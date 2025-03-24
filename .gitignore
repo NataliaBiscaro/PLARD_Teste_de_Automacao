@@ -1,0 +1,31 @@
+# node modules
+node_modules/
+
+# arquivos .bin
+**/.bin/
+*.bin
+
+# arquivos de log
+*.log
+npm-debug.log*
+
+# variáveis de ambiente
+.env
+
+# pastas de build
+dist/
+build/
+
+# sistema operacional
+.DS_Store
+Thumbs.db
+
+# VS Code configs
+.vscode/
+
+# Cypress resultados
+cypress/videos/
+cypress/screenshots/
+
+# coverage
+coverage/
