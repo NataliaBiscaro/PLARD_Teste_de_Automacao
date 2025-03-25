@@ -2,28 +2,28 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 const baseUrl = "https://advantageonlineshopping.com/#/";
 
-Given("O usuário acessa o site", function () {
+Given("o usuário acessa o site", function () {
   cy.visit(baseUrl);
   cy.url().should("include", "/#/");
 });
 
 When("o usuário busca o produto {string}", (produto) => {
   cy.get("#mobileSearch").click().type(produto).type("{enter}");
+});
+
+When("o usuário seleciona o produto desejado", () => {
   cy.get(
     '[data-ng-show="([] | productsFilterForCategoriesProduct:searchResult:minPriceToFilter:maxPriceToFilter:productsInclude).length != 0"] > ul > li.ng-scope'
   ).click();
+});
+
+When("o usuário adiciona o produto ao carrinho", () => {
   cy.get('button[name="save_to_cart"]').click();
 });
-
-/*When("seleciona o produto desejado", () => {
-  // Essa etapa já está incluída no passo anterior (clicando no autocomplete)
+When("o usuário clica no carrinho de compras", () => {
+  cy.get("#shoppingCartLink").click();
 });
 
-When("adiciona o produto ao carrinho", () => {
-  cy.get("button[name='save_to_cart']").click(); // clica no botão de adicionar ao carrinho
+Then("o produto selecionado deve estar no carrinho", () => {
+  cy.get("label.productName").should("contain.text", "HP H2310 IN-EAR HEADSET");
 });
-
-Then("o produto deve aparecer no carrinho", () => {
-  cy.get("#shoppingCart").click(); // abre o carrinho
-  cy.get(".productName").should("exist"); // verifica se o produto está visível
-});*/
